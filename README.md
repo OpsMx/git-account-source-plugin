@@ -16,7 +16,6 @@ This plugin supports dynamic accounts loading from Git repository by cloning a r
 
 ```yaml
 google:
-   enabled: true
    accounts:
       - name: spinnaker-gce-account-v1.2
         requiredGroupMembership: []
