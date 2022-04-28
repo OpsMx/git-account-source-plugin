@@ -70,17 +70,17 @@ spinnaker:
             url: https://raw.githubusercontent.com/ashish-ck/git-accounts-yml/master/repositories.json
 
 config:
-   repositoryName: < REPOSITORY NAME >
-   filename: < FILENAME >
-   gitHttpsUsername: < GIT USERNAME >
-   gitHttpsPassword: < GIT PASSWORD >
-   githubOAuthAccessToken: < GIT OAUTH TOKEN >
-   sshPrivateKeyFilePath: < PRIVATE KEY FILE PATH >
-   sshPrivateKeyPassphrase: < PARAPHRASE >
-   sshKnownHostsFilePath: < KNOWN HOST FILE PATH >
-   credentialType: < HTTPS_GITHUB_OAUTH_TOKEN /  HTTPS_USERNAME_PASSWORD /  SSH / NONE >
-   sshTrustUnknownHosts: < true / false >
-
+   repositoryName: 'https://github.com/ashish-ck/git-accounts-yml'
+   filename: 'accounts.yml'
+   gitHttpsUsername: 'ashish-ck'
+   gitHttpsPassword: ''
+   githubOAuthAccessToken: ''
+   sshPrivateKeyFilePath: '~/.ssh/id_ed25519.pub'
+   sshPrivateKeyPassphrase: ''
+   sshKnownHostsFilePath: '~/.ssh/known_hosts'
+   credentialType: 'NONE'
+   sshTrustUnknownHosts: false
+  
 credentials:
    poller:
       enabled: true
