@@ -37,7 +37,6 @@ class GitAccountsStatusTest {
     @BeforeEach
     public void setUp() {
         String accountsYml = "google:\n" +
-                "  enabled: true\n" +
                 "  accounts:\n" +
                 "  - name: spinnaker-gce-account-v1.2\n" +
                 "    jsonPath: encryptedFile:gcs!b:gce-accounts-v1!f:gce-account.json\n" +
