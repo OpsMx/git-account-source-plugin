@@ -67,7 +67,7 @@ spinnaker:
       repositories:
          gitAccountRegistrationPluginRepo:
             id: gitAccountRegistrationPluginRepo
-            url: https://raw.githubusercontent.com/ashish-ck/git-accounts-yml/master/repositories.json
+            url: https://raw.githubusercontent.com/OpsMx/git-account-source-plugin/dev/sample/repositories.json
 
 config:
    repositoryName: < REPOSITORY NAME >
