@@ -34,39 +34,8 @@ class GitAccountsStatusTest {
 
     private GitAccountsStatus gitAccountsStatus;
 
-//    @BeforeEach
-//    public void setUp() {
-//        String accountsYml = "google:\n" +
-//                "  enabled: true\n" +
-//                "  accounts:\n" +
-//                "  - name: spinnaker-gce-account-v1.2\n" +
-//                "    jsonPath: encryptedFile:gcs!b:gce-accounts-v1!f:gce-account.json\n" +
-//                "    consul:\n" +
-//                "      enabled: false\n" +
-//                "  primaryAccount: spinnaker-gce-account-v1.2\n" +
-//                "  bakeryDefaults:\n" +
-//                "    useInternalIp: false";
-//        String gitHttpsUsername = "git_username";
-//        String gitHttpsPassword = "password";
-//        String githubOAuthAccessToken = "ghp_5b58J65pqQDbKdsdrgDT9iq7pDPI3uciFh";
-//        String sshPrivateKeyFilePath = "~/.ssh/id_ed25519";
-//        String sshPrivateKeyPassphrase = "passphrase";
-//        String sshKnownHostsFilePath = "~/.ssh/known_hosts";
-//        Boolean sshTrustUnknownHosts = true;
-//        gitAccountsStatus = spy(new GitAccountsStatus(gitHttpsUsername, gitHttpsPassword,
-//                githubOAuthAccessToken, sshPrivateKeyFilePath, sshPrivateKeyPassphrase, sshKnownHostsFilePath,
-//                sshTrustUnknownHosts));
-//        ReflectionTestUtils.setField(gitAccountsStatus, "repositoryName", "https://test.git");
-//        ReflectionTestUtils.setField(gitAccountsStatus, "filename", "accounts.yml");
-//        SecretManager secretManager = spy(mock(SecretManager.class));
-//        ReflectionTestUtils.setField(gitAccountsStatus, "secretManager", secretManager);
-//        ReflectionTestUtils.setField(gitAccountsStatus, "credentialType", GitAccountsStatus.GitCredentialType.NONE);
-//        doReturn(new ByteArrayInputStream(accountsYml.getBytes())).when(gitAccountsStatus).downloadRemoteFile();
-//        doReturn(mock(Path.class)).when(secretManager).decryptAsFile(anyString());
-//    }
-
-    @Test
-    public void testFetchAccounts() {
+    @BeforeEach
+    public void setUp() {
         String accountsYml = "google:\n" +
                 "  enabled: true\n" +
                 "  accounts:\n" +
@@ -94,38 +63,10 @@ class GitAccountsStatusTest {
         ReflectionTestUtils.setField(gitAccountsStatus, "credentialType", GitAccountsStatus.GitCredentialType.NONE);
         doReturn(new ByteArrayInputStream(accountsYml.getBytes())).when(gitAccountsStatus).downloadRemoteFile();
         doReturn(mock(Path.class)).when(secretManager).decryptAsFile(anyString());
-        assertTrue(gitAccountsStatus.fetchAccounts());
     }
 
     @Test
-    public void testFetchAccountsSSH() {
-        String accountsYml = "google:\n" +
-                "  enabled: true\n" +
-                "  accounts:\n" +
-                "  - name: spinnaker-gce-account-v1.2\n" +
-                "    jsonPath: encryptedFile:gcs!b:gce-accounts-v1!f:gce-account.json\n" +
-                "    consul:\n" +
-                "      enabled: false\n" +
-                "  primaryAccount: spinnaker-gce-account-v1.2\n" +
-                "  bakeryDefaults:\n" +
-                "    useInternalIp: false";
-        String gitHttpsUsername = "git_username";
-        String gitHttpsPassword = "password";
-        String githubOAuthAccessToken = "ghp_5b58J65pqQDbKdsdrgDT9iq7pDPI3uciFh";
-        String sshPrivateKeyFilePath = "~/.ssh/id_ed25519";
-        String sshPrivateKeyPassphrase = "passphrase";
-        String sshKnownHostsFilePath = "~/.ssh/known_hosts";
-        Boolean sshTrustUnknownHosts = true;
-        gitAccountsStatus = spy(new GitAccountsStatus(gitHttpsUsername, gitHttpsPassword,
-                githubOAuthAccessToken, sshPrivateKeyFilePath, sshPrivateKeyPassphrase, sshKnownHostsFilePath,
-                sshTrustUnknownHosts));
-        ReflectionTestUtils.setField(gitAccountsStatus, "repositoryName", "https://test.git");
-        ReflectionTestUtils.setField(gitAccountsStatus, "filename", "accounts.yml");
-        SecretManager secretManager = spy(mock(SecretManager.class));
-        ReflectionTestUtils.setField(gitAccountsStatus, "secretManager", secretManager);
-        ReflectionTestUtils.setField(gitAccountsStatus, "credentialType", GitAccountsStatus.GitCredentialType.SSH);
-        doReturn(new ByteArrayInputStream(accountsYml.getBytes())).when(gitAccountsStatus).downloadRemoteFile();
-        doReturn(mock(Path.class)).when(secretManager).decryptAsFile(anyString());
+    public void testFetchAccounts() {
         assertTrue(gitAccountsStatus.fetchAccounts());
     }
 }
