@@ -1,0 +1,44 @@
+{
+  "google": {
+    "accounts": [
+      {
+        "name": "spinnaker-gce-account-v1.1",
+        "requiredGroupMembership": [],
+        "permissions": {
+          "WRITE": [
+            "compute.projects.write"
+          ]
+        },
+        "project": "opsmx-ggproject-2022",
+        "jsonPath": "encryptedFile:gcs!b:gce-accounts-v1!f:gce-account.json",
+        "alphaListed": false,
+        "imageProjects": [],
+        "consul": {
+          "enabled": false,
+          "agentEndpoint": "localhost",
+          "agentPort": 8500,
+          "datacenters": []
+        }
+      },
+      {
+        "name": "spinnaker-gce-account-v1.2",
+        "requiredGroupMembership": [],
+        "permissions": {
+          "WRITE": [
+            "compute.projects.write"
+          ]
+        },
+        "project": "opsmx-ggproject-2022",
+        "jsonPath": "encryptedFile:gcs!b:gce-accounts-v1!f:gce-account.json",
+        "alphaListed": false,
+        "imageProjects": [],
+        "consul": {
+          "enabled": false,
+          "agentEndpoint": "localhost",
+          "agentPort": 8500,
+          "datacenters": []
+        }
+      }
+    ]
+  }
+}
