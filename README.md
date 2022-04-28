@@ -85,6 +85,10 @@ credentials:
 3. Run the clouddriver  `./gradlew`
 
 
+### Note
+Keys should be generated with `ssh-keygen -t rsa -m PEM` ([stackoverflow](https://stackoverflow.com/questions/53134212/invalid-privatekey-when-using-jsch)).
+
+
 ## License
 This project is licensed under the Apache-2.0 License.
 
