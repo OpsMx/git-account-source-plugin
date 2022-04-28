@@ -32,13 +32,6 @@ google:
            agentEndpoint: localhost
            agentPort: 8500
            datacenters: []
-   primaryAccount: spinnaker-gce-account-v1.2
-   bakeryDefaults:
-      templateFile: gce.json
-      baseImages: []
-      zone: us-central1-f
-      network: default
-      useInternalIp: false
 ```
 
 
@@ -72,7 +65,7 @@ spinnaker:
 config:
    repositoryName: 'https://github.com/ashish-ck/git-accounts-yml'
    filename: 'accounts.yml'
-   gitHttpsUsername: 'ashish-ck'
+   gitHttpsUsername: ''
    gitHttpsPassword: ''
    githubOAuthAccessToken: ''
    sshPrivateKeyFilePath: '~/.ssh/id_ed25519.pub'
