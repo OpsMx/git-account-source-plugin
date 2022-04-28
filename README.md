@@ -72,7 +72,7 @@ config:
    sshKnownHostsFilePath: '~/.ssh/known_hosts'
    credentialType: 'NONE'
    sshTrustUnknownHosts: false
-  
+
 credentials:
    poller:
       enabled: true
@@ -83,6 +83,10 @@ credentials:
 
 2. Deploy this configuration with [hal command](https://spinnaker.io/docs/setup/install/deploy/).    `hal deploy apply && hal deploy connect`
 3. Run the clouddriver  `./gradlew`
+
+
+### Note
+Keys should be generated with `ssh-keygen -t rsa -m PEM` ([stackoverflow](https://stackoverflow.com/questions/53134212/invalid-privatekey-when-using-jsch)).
 
 
 ## License

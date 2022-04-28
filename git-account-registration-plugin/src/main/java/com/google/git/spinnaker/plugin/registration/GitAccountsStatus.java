@@ -202,9 +202,8 @@ public class GitAccountsStatus {
                                                          String sshPrivateKeyPassphrase,
                                                          String sshKnownHostsFilePath,
                                                          boolean sshTrustUnknownHosts) {
-        final SshSessionFactory sshSessionFactory;
-        if (!StringUtils.isEmptyOrNull(sshPrivateKeyFilePath) && !StringUtils.isEmptyOrNull(sshPrivateKeyPassphrase)) {
-            sshSessionFactory = new JschConfigSessionFactory() {
+        if (!StringUtils.isEmptyOrNull(sshPrivateKeyFilePath)) {
+            SshSessionFactory sshSessionFactory = new JschConfigSessionFactory() {
                 @Override
                 protected void configure(OpenSshConfig.Host hc, Session session) {
                     if (sshKnownHostsFilePath == null && sshTrustUnknownHosts) {
@@ -225,33 +224,12 @@ public class GitAccountsStatus {
                     return defaultJSch;
                 }
             };
-        } else {
-            sshSessionFactory = new JschConfigSessionFactory() {
-                @Override
-                protected void configure(OpenSshConfig.Host hc, Session session) {
-                }
-
-                @Override
-                protected JSch createDefaultJSch(FS fs) throws JSchException {
-                    JSch defaultJSch = super.createDefaultJSch(fs);
-                    if (StringUtils.isEmptyOrNull(sshPrivateKeyPassphrase)) {
-                        defaultJSch.addIdentity(sshPrivateKeyFilePath);
-                    } else {
-                        defaultJSch.addIdentity(sshPrivateKeyFilePath, sshPrivateKeyPassphrase);
-                    }
-                    if (sshKnownHostsFilePath != null) {
-                        defaultJSch.setKnownHosts(sshKnownHostsFilePath);
-                    }
-                    return defaultJSch;
-                }
+            sshTransportConfigCallback = transport -> {
+                SshTransport sshTransport = (SshTransport) transport;
+                sshTransport.setSshSessionFactory(sshSessionFactory);
             };
-
+            log.info("Init Ssh Transport Config Callback ");
         }
-        sshTransportConfigCallback = transport -> {
-            SshTransport sshTransport = (SshTransport) transport;
-            sshTransport.setSshSessionFactory(sshSessionFactory);
-        };
-        log.info("Init Ssh Transport Config Callback ");
     }
 
     public enum GitCredentialType {
