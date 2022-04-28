@@ -45,7 +45,7 @@ google:
 ### Build
 1. To build the plugin run the following command `./gradlew clean build`.
 2. To build the plugin zip, run the following command `./gradlew releaseBundle`.
-   The above command will produce a zip file, `git-account-registration-plugin-spinnaker/git-account-registration-plugin/build/distributions/git-account-registration-plugin*.zip`.
+   The above command will produce a zip file, `git-account-source-plugin/git-account-registration-plugin/build/distributions/git-account-registration-plugin*.zip`.
 3. Publish the release at GitHub site and update `plugins.json` with the URL of plugin zip. or
    Copy the zip file to Clouddriver plugin directory. Defaults to `/opt/clouddriver/plugins`. This directory can be specified by the `plugins-root-path` configuration property.
 4. Enable the plugin by placing the following in Clouddriver [profile](https://spinnaker.io/reference/halyard/custom/#custom-profiles).
