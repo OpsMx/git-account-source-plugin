@@ -6,7 +6,7 @@ pluginManagement {
   }
 }
 
-rootProject.name = "git-account-registration-plugin-spinnaker"
+rootProject.name = "git-account-source-plugin"
 
 include "git-account-registration-plugin"
 

@@ -46,6 +46,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.error.YAMLException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -152,26 +153,30 @@ public class GitAccountsStatus {
     }
 
     public synchronized Boolean fetchAccounts() {
-        log.info("Fetching Accounts ");
-        List<GoogleConfigurationProperties.ManagedAccount> googleCredentialsDefinitions = new ArrayList<>();
-        InputStream inputStream = downloadRemoteFile();
-        if (inputStream == null) {
+        try {
+            log.info("Fetching Accounts ");
+            List<GoogleConfigurationProperties.ManagedAccount> googleCredentialsDefinitions = new ArrayList<>();
+            InputStream inputStream = downloadRemoteFile();
+            if (inputStream == null) {
+                return false;
+            }
+            Yaml yaml = new Yaml();
+            Map<String, Object> data = yaml.load(inputStream);
+            ObjectMapper mapper = new ObjectMapper();
+            HashMap map = (HashMap) data.get("google");
+            ArrayList accountsList = (ArrayList) map.get("accounts");
+            for (int i = 0; i < accountsList.size(); i++) {
+                GoogleConfigurationProperties.ManagedAccount managedAccount = mapper.
+                        convertValue(accountsList.get(i), GoogleConfigurationProperties.ManagedAccount.class);
+                managedAccount.setJsonPath(secretManager.decryptAsFile(managedAccount.getJsonPath()).toString());
+                googleCredentialsDefinitions.add(managedAccount);
+                log.info("Fetched Google Account: {} ", managedAccount);
+            }
+            this.accounts = ImmutableList.copyOf(googleCredentialsDefinitions);
+            return true;
+        } catch (YAMLException e) {
             return false;
         }
-        Yaml yaml = new Yaml();
-        Map<String, Object> data = yaml.load(inputStream);
-        ObjectMapper mapper = new ObjectMapper();
-        HashMap map = (HashMap) data.get("google");
-        ArrayList accountsList = (ArrayList) map.get("accounts");
-        for (int i = 0; i < accountsList.size(); i++) {
-            GoogleConfigurationProperties.ManagedAccount managedAccount = mapper.
-                    convertValue(accountsList.get(i), GoogleConfigurationProperties.ManagedAccount.class);
-            managedAccount.setJsonPath(secretManager.decryptAsFile(managedAccount.getJsonPath()).toString());
-            googleCredentialsDefinitions.add(managedAccount);
-            log.info("Fetched Google Account: {} ", managedAccount);
-        }
-        this.accounts = ImmutableList.copyOf(googleCredentialsDefinitions);
-        return true;
     }
 
     public List<GoogleConfigurationProperties.ManagedAccount> getGoogleAccountsAsList() {
