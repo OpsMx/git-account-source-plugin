@@ -86,7 +86,7 @@ credentials:
 
 
 ### Note
-Keys should be generated with `ssh-keygen -t rsa -m PEM` ([stackoverflow](https://stackoverflow.com/questions/53134212/invalid-privatekey-when-using-jsch)).
+[Stackoverflow](https://stackoverflow.com/questions/53134212/invalid-privatekey-when-using-jsch)
 
 
 ## License
