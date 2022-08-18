@@ -1,6 +1,6 @@
 [
   {
     "id": "spinnakerPluginsRepo",
-    "url": "https://raw.githubusercontent.com/opsmx/git-account-source-plugin/dev/sample/plugins.json"
+    "url": "https://raw.githubusercontent.com/opsmx/git-account-source-plugin/main/sample/plugins.json"
   }
 ]
