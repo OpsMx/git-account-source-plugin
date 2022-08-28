@@ -16,7 +16,7 @@ sourceSets.main.java.srcDirs = ["src/main/java"]
 spinnakerPlugin {
   serviceName = "git-account-registration-plugin"
   pluginClass = "com.google.git.spinnaker.plugin.registration.GitAccountRegistrationPlugin"
-  requires = "git-account-registration-plugin>=0.0.0"
+  requires = "clouddriver>=5.77.0"
 }
 
 dependencies {
