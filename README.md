@@ -50,8 +50,8 @@ spinnaker:
    extensibility:
       plugins-root-path: /opt/clouddriver/plugins
       plugins:
-         Git.AccountRegistration:
-            id: Git.AccountRegistration
+         OpsMx.GitAccountRegistration:
+            id: OpsMx.GitAccountRegistration
             enabled: true
             version: 0.0.1
             extensions: {}
@@ -62,7 +62,7 @@ spinnaker:
             url: https://raw.githubusercontent.com/OpsMx/git-account-source-plugin/dev/sample/repositories.json
 
 config:
-   repositoryName: 'https://github.com/ashish-ck/git-accounts-yml'
+   repositoryName: 'https://github.com/opsmx/git-accounts-yml'
    filename: 'accounts.yml'
    gitHttpsUsername: ''
    gitHttpsPassword: ''
@@ -70,7 +70,7 @@ config:
    sshPrivateKeyFilePath: '~/.ssh/id_ed25519.pub'
    sshPrivateKeyPassphrase: ''
    sshKnownHostsFilePath: '~/.ssh/known_hosts'
-   credentialType: 'NONE'
+   credentialType: 'SSH'
    sshTrustUnknownHosts: false
   
 credentials:
