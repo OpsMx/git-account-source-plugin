@@ -79,6 +79,9 @@ credentials:
       types:
          gce:
             reloadFrequencyMs: 20000
+
+google:
+  enabled: true
 ```
 
 2. Deploy this configuration with [hal command](https://spinnaker.io/docs/setup/install/deploy/).    `hal deploy apply && hal deploy connect`
